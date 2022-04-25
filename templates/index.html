@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <header>jpg to png converter</header>
+    <!-- action="/upload/" enctype="multipart/form-data" method="post" -->
+    <form  action="/upload/" enctype="multipart/form-data" method="post">
+        <div id="select-area">
+            <input class="file-input" type="file" name="files" hidden multiple id="filess">
+            <i class='fas fa-file-image'></i>
+            <p>select jpg file</p>           
+        </div> 
+        <div class="preview" id="preview">
+            <img id="file-preview">
+            <i class="fas fa-trash" id="remove-img"></i>
+        </div>
+        
+        {% if filename %}
+        <a href="{{ filename }}" download class="btn-convert" id="btn-download"> Download</a>
+        
+        <script>
+            preview = document.getElementById("file-preview");
+            preview.src = "{{ filename }}";
+            document.getElementById("select-area").style.display="none";
+            document.getElementById("remove-img").style.display="none";
+            document.getElementById("remove-img").style.outline="none"
+            
+            
+        </script>  
+        
+
+        {% else %}
+        <input type="submit" class="btn-convert" value="convert to png" disabled="true" id="save">
+
+        {% endif %}
+        
+        
+        
+    </form>
+    
+</div>
+
+{% endblock %}
+
+
